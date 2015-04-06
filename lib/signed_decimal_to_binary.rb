@@ -1,4 +1,22 @@
 class SignedDecimalToBinary
+
+  def self.convert_with_neg_base decimal
+    number_of_terms = (Math.log2(decimal.abs)).ceil + 2
+    binary_array = Array.new(number_of_terms, 0)
+    binary_array[0] = decimal % 2
+    min = decimal
+    for i in 0..(number_of_terms-2)
+      binary_array[i+1] = ((min - binary_array[i])/-2) % 2
+      min = ((min - binary_array[i])/-2)
+    end
+
+    # Remove extra byte
+    while binary_array[binary_array.length - 1] == 0
+      binary_array = binary_array[0..-2]
+    end
+    binary_array.join('')
+  end
+
   def self.convert decimal
     return '0' if decimal == 0
 
