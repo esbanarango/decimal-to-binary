@@ -1,6 +1,6 @@
 module ToDecimalHelpers
 	def to_decimal binary, negative_base = false
-
+		binary.reverse!
 		decimal = 0
 
 		if negative_base

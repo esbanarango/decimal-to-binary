@@ -72,7 +72,7 @@ class DecimalToBinary
     while binary_array[binary_array.length - 1] == 0
       binary_array = binary_array[0..-2]
     end
-    binary_array.join('')
+    binary_array.reverse!.join('')
 
   end
 

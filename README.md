@@ -17,8 +17,8 @@ decimal_to_binary.convert -200
 decimal_to_binary.negative_base = true
 
 decimal_to_binary.convert 200
-# "000110111"
+# "111011000"
 decimal_to_binary.convert -200
-# "0001001011"
+# "1101001000"
 
 ```

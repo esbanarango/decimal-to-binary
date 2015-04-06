@@ -48,10 +48,10 @@ describe DecimalToBinary do
           expect(to_decimal(binary, true)).to eq (n)
         end
 
-        expect(decimal_to_binary.convert(-9)).to eq ('1101')
-        expect(decimal_to_binary.convert(9)).to eq ('10011')
+        expect(decimal_to_binary.convert(-9)).to eq ('1011')
+        expect(decimal_to_binary.convert(9)).to eq ('11001')
         expect(decimal_to_binary.convert(23)).to eq ('1101011')
-        expect(decimal_to_binary.convert(-23)).to eq ('100111')
+        expect(decimal_to_binary.convert(-23)).to eq ('111001')
 
       end
     end
