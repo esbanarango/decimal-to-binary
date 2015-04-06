@@ -1,6 +1,6 @@
 # Decimal to binary
 
-[![Build Status](https://travis-ci.org/esbanarango/signed-decimal-to-binary.svg)](https://travis-ci.org/esbanarango/signed-decimal-to-binary)
+[![Build Status](https://travis-ci.org/esbanarango/decimal-to-binary.svg?branch=master)](https://travis-ci.org/esbanarango/decimal-to-binary)
 
 Implementation of the __Decimal to binary "problem"__. But enhanced.
 
