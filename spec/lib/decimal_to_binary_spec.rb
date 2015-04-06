@@ -42,10 +42,17 @@ describe DecimalToBinary do
 
     describe '#convert' do
       it 'converts a decimal to binary with negative base' do
+
+        (-to_limit).upto(to_limit) do |n|
+          binary = decimal_to_binary.convert(n)
+          expect(to_decimal(binary, true)).to eq (n)
+        end
+
         expect(decimal_to_binary.convert(-9)).to eq ('1101')
         expect(decimal_to_binary.convert(9)).to eq ('10011')
         expect(decimal_to_binary.convert(23)).to eq ('1101011')
         expect(decimal_to_binary.convert(-23)).to eq ('100111')
+
       end
     end
 
