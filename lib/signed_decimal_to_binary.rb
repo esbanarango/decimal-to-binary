@@ -1,41 +1,20 @@
 class SignedDecimalToBinary
 
-  def self.convert_with_neg_base decimal
-    number_of_terms = (Math.log2(decimal.abs)).ceil + 2
-    binary_array = Array.new(number_of_terms, 0)
-    binary_array[0] = decimal % 2
-    min = decimal
-    for i in 0..(number_of_terms-2)
-      binary_array[i+1] = ((min - binary_array[i])/-2) % 2
-      min = ((min - binary_array[i])/-2)
-    end
-
-    # Remove extra byte
-    while binary_array[binary_array.length - 1] == 0
-      binary_array = binary_array[0..-2]
-    end
-    binary_array.join('')
+  def initialize(negative_base = false)
+    @negative_base = negative_base
   end
 
-  def self.convert decimal
+  def convert decimal
     return '0' if decimal == 0
 
-    # Flag if the number is negative
-    negative = decimal < 0
-
-    # Set the number to positive
-    decimal = decimal.abs
-
-    binary = ''
-    while decimal != 0
-      binary += (decimal % 2).to_s
-      decimal /= 2
+    if @negative_base
+      with_negative_base decimal
+    else
+      with_positive_base decimal
     end
-    binary.reverse!
-    negative ? to_negative(binary) : binary
   end
 
-  def self.to_negative(binary)
+  def to_negative(binary)
     # Add extra byte
     binary = '0' + binary
     # Perform the NOT operand
@@ -55,5 +34,45 @@ class SignedDecimalToBinary
 
     summed_binary.join('')
   end
+
+  private
+
+  def with_positive_base decimal
+
+    # Flag if the number is negative
+    negative = decimal < 0
+
+    # Set the number to positive
+    decimal = decimal.abs
+
+    binary = ''
+    while decimal != 0
+      binary += (decimal % 2).to_s
+      decimal /= 2
+    end
+    binary.reverse!
+    negative ? to_negative(binary) : binary
+
+  end
+
+  def with_negative_base decimal
+
+    number_of_terms = (Math.log2(decimal.abs)).ceil + 2
+    binary_array = Array.new(number_of_terms, 0)
+    binary_array[0] = decimal % 2
+    min = decimal
+    for i in 0..(number_of_terms-2)
+      binary_array[i+1] = ((min - binary_array[i])/-2) % 2
+      min = ((min - binary_array[i])/-2)
+    end
+
+    # Remove extra byte
+    while binary_array[binary_array.length - 1] == 0
+      binary_array = binary_array[0..-2]
+    end
+    binary_array.join('')
+
+  end
+
 
 end
